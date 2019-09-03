@@ -11,7 +11,7 @@
         <h1 class="template-head">List of github js repositories</h1>
 
         <div class="paginator-wrapper">
-            <div class="paginator"></div>
+            <div class="paginator">{{ availablePages }}</div>
         </div>
 
         <ol class="repo_list">
@@ -30,10 +30,14 @@
 
                 <span class="repo_item_col">💬 Open issues</span>
             </li>
-            <li v-for="repo in repos" class="repo_item">
+
+            <div v-if="!isLoaded" class="repo_loading">Loading...</div>
+
+            <li v-if="isLoaded" v-for="repo in repos" class="repo_item">
+
                 <span class="repo_item_col">{{ repo.name }}</span>
 
-                <span class="repo_item_col repo_item_col--link"><a class="repo_item_link" :href="repo.html_url" :title="repo.html_url" target="_blank" class="commit">{{ repo.html_url }}</a></span>
+                <span class="repo_item_col"><a :href="repo.html_url" :title="repo.html_url" target="_blank" class="commit">{{ repo.html_url }}</a></span>
 
                 <span class="repo_item_col">{{ repo.stargazers_count }}</span>
 
@@ -49,8 +53,6 @@
                 <span class="repo_item_col">{{ repo.forks }}</span>
 
                 <span class="repo_item_col">{{ repo.open_issues_count }}</span>
-
-<!--                <pre style="max-width: 100%; max-height: 200px; overflow: auto; box-shadow: 0 0 2px 2px #eee" >{{ repo }}</pre>-->
             </li>
         </ol>
     </div>

@@ -4,43 +4,43 @@ var apiURL = 'https://api.github.com/search/repositories?q=""+language:javascrip
  * Actual demo
  */
 
-var demo = new Vue({
+const MAX_AVAILABLE_ITEM_COUNT = 1000;
+
+const demo = new Vue({
 
   el: '#demo',
 
   data: {
-    // branches: ['master', 'dev'],
-    // currentBranch: 'master',
-    repos: null
+    availablePages: 1,
+    pages: 1,
+    repos: null,
+    itemsLength: null,
+    isLoaded: false
   },
 
   created: function () {
     this.fetchData()
   },
 
-  // watch: {
-  //   currentBranch: 'fetchData'
-  // },
-
-  filters: {
-    truncate: function (v) {
-      var newline = v.indexOf('\n');
-      return newline > 0 ? v.slice(0, newline) : v
-    },
-    formatDate: function (v) {
-      return v.replace(/T|Z/g, ' ')
-    }
-  },
-
   methods: {
     fetchData: function () {
-      var xhr = new XMLHttpRequest();
-      var self = this;
-      xhr.open('GET', apiURL);
+      let xhr = new XMLHttpRequest();
+      let self = this;
+
+      self.isLoaded = false;
+
+      xhr.open('GET', `${apiURL}&page=${self.availablePages}`);
       xhr.onload = function () {
-        self.repos = JSON.parse(xhr.response).items;
-        console.log('repos', self.repos);
-        console.log('repos', xhr, JSON.parse(xhr.response));
+        let response = JSON.parse(xhr.response);
+
+        self.repos = response.items;
+        self.isLoaded = true;
+
+        self.itemsLength = self.itemsLength || self.repos.length;
+
+        self.availablePages = Math.ceil(MAX_AVAILABLE_ITEM_COUNT/self.itemsLength);
+
+        console.log('response', xhr);
       };
       xhr.send()
     }

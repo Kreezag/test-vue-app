@@ -36,6 +36,14 @@ hrml {
     box-sizing: border-box;
 }
 
+.repo_loading {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .repo_item {
     display: inline-flex;
     width: 100%;
@@ -55,12 +63,6 @@ hrml {
 
 .repo_item_col {
     width: 14.28%;
-}
-
-.repo_item_col--link {
-}
-
-.repo_item_link {
     white-space: nowrap;
     text-overflow: ellipsis;
     display: block;
@@ -72,17 +74,4 @@ hrml {
     height: 20px;
     float: left;
     margin-right: 10px;
-}
-
-
-a {
-    text-decoration: none;
-    color: #f66;
-}
-li {
-    line-height: 1.5em;
-    margin-bottom: 20px;
-}
-.author, .date {
-    font-weight: bold;
 }
