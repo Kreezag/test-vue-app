@@ -1,0 +1,88 @@
+hrml {
+    font-family: 'Helvetica', Arial, sans-serif;
+}
+
+.template {
+    max-width: 1200px;
+    margin: 20px auto 40px;
+}
+
+.template-head {
+    float: left;
+    margin: 0;
+}
+
+.paginator-wrapper {
+    float: right;
+    padding-bottom: 20px;
+}
+
+.paginator {
+    width: 100px;
+    height: 40px;
+    background-color: red;
+}
+
+.repo_list {
+    margin: 50px 0 0 0;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #fafbfc;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.repo_item {
+    display: inline-flex;
+    width: 100%;
+    margin: 0;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.repo_item-header {
+    padding-bottom: 20px;
+}
+
+.repo_item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.repo_item_col {
+    width: 14.28%;
+}
+
+.repo_item_col--link {
+}
+
+.repo_item_link {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+
+.repo_item_img {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #f66;
+}
+li {
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+.author, .date {
+    font-weight: bold;
+}
