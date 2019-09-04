@@ -3,7 +3,6 @@ var apiURL = 'https://api.github.com/search/repositories?q=""+language:javascrip
 
 
 const MAX_AVAILABLE_ITEM_COUNT = 1000; // NOTE: github default count
-const DEFAULT_REQUEST_ELEMENTS_COUNT = 30; // NOTE: github default count
 
 const mkRequestParams = (pageNumber) => {
   return pageNumber ? `page=${pageNumber}` : '';
@@ -11,23 +10,28 @@ const mkRequestParams = (pageNumber) => {
 
 
 new Vue({
-
   el: '#demo',
-
   data: {
-    availablePages: 1,
-    pages: 1,
+    currentPage: 1,
     repos: [],
     itemsLength: null,
-    loading: true
+    loading: true,
+    hasAvailablePages: false,
   },
 
   created: function () {
     this.fetchData();
   },
 
+  computed: {
+    availablePages: function () {
+      console.log('this', this);
+      return this.itemsLength ? Math.ceil(MAX_AVAILABLE_ITEM_COUNT/this.itemsLength) : 1;
+    }
+  },
+
   watch: {
-    pages: function () {
+    currentPage: function () {
       this.fetchData();
     }
   },
@@ -39,16 +43,15 @@ new Vue({
 
       self.loading = true;
 
-      xhr.open('GET', `${apiURL}&${mkRequestParams(self.pages)}`);
+      xhr.open('GET', `${apiURL}&${mkRequestParams(self.currentPage)}`);
       xhr.onload = function () {
         let response = JSON.parse(xhr.response);
+        self.hasAvailablePages = true;
 
         self.repos = response.items;
         self.loading = false;
 
         self.itemsLength = self.itemsLength || self.repos.length;
-
-        self.availablePages = Math.ceil(MAX_AVAILABLE_ITEM_COUNT/self.itemsLength);
 
         console.log('response', xhr, response);
       };

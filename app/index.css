@@ -12,47 +12,52 @@ hrml {
     margin: 0;
 }
 
-.paginator-wrapper {
-    float: right;
-    padding-bottom: 20px;
-}
-
-.paginator {
-    float: right;
-    height: 40px;
+.pagination {
     border: 1px solid #fafbfc;
+    padding: 20px 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.paginator-count {
-    padding: 5px 8px;
+.pagination-count {
     color: #3c4146;
     font-size: 20px;
     font-weight: bold;
     line-height: 20px;
-    float: left;
+    display: inline-block;
 }
 
-.paginator-button {
+.pagination-button-list {
+    display: inline-block;
+}
+
+.pagination-button {
     height: 30px;
-    padding: 5px 20px;
+    padding: 5px 8px;
     border-radius: 5px;
-    float: left;
-    background: #f66;
-    border: 1px solid #f33;
-    color: #eee;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    color: #3c4146;
     line-height: 20px;
-    margin-left: 12px;
+    margin-left: 2px;
     text-transform: uppercase;
 }
 
-.paginator-button:disabled {
+.pagination-button--active {
+    background: #f66;
+    border: 1px solid #f33;
+    color: #eee;
+}
+
+.pagination-button:disabled {
     background: #ddd;
-    border: #d7d7d7;
     color: #111;
 }
 
 .repo_list {
-    margin: 50px 0 0 0;
+    margin: 0;
     display: flex;
     width: 100%;
     flex-direction: row;
