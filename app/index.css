@@ -21,7 +21,7 @@ hrml {
     align-items: center;
 }
 
-.pagination-count {
+.pagination__count {
     color: #3c4146;
     font-size: 20px;
     font-weight: bold;
@@ -29,11 +29,11 @@ hrml {
     display: inline-block;
 }
 
-.pagination-button-list {
+.pagination__button-list {
     display: inline-block;
 }
 
-.pagination-button {
+.pagination__button {
     height: 30px;
     padding: 5px 8px;
     border-radius: 5px;
@@ -45,18 +45,18 @@ hrml {
     text-transform: uppercase;
 }
 
-.pagination-button--active {
+.pagination__button--active {
     background: #f66;
     border: 1px solid #f33;
     color: #eee;
 }
 
-.pagination-button:disabled {
+.pagination__button:disabled {
     background: #ddd;
     color: #111;
 }
 
-.repo_list {
+.repo-list {
     margin: 0;
     display: flex;
     width: 100%;
@@ -69,7 +69,7 @@ hrml {
     box-sizing: border-box;
 }
 
-.repo_loading {
+.repo-loading {
     width: 100%;
     height: 200px;
     display: flex;
@@ -77,7 +77,7 @@ hrml {
     align-items: center;
 }
 
-.repo_item {
+.repo-item {
     display: inline-flex;
     width: 100%;
     margin: 0;
@@ -85,16 +85,16 @@ hrml {
     border-bottom: 1px solid #eee;
 }
 
-.repo_item-header {
+.repo-item-header {
     padding-bottom: 20px;
 }
 
-.repo_item:last-child {
+.repo-item:last-child {
     border-bottom: 0;
     padding-bottom: 0;
 }
 
-.repo_item_col {
+.repo-item__col {
     width: 14.28%;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -102,7 +102,7 @@ hrml {
     overflow: hidden;
 }
 
-.repo_item_img {
+.repo-item__img {
     width: 20px;
     height: 20px;
     float: left;
