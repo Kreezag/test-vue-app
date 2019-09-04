@@ -1,4 +1,4 @@
-var apiURL = 'https://api.github.com/search/repositories?q=""+language:javascript&sort=stargazers_count&order=desc';
+const apiURL = 'https://api.github.com/search/repositories?q=""+language:javascript&sort=stargazers_count&order=desc';
 
 
 
@@ -46,11 +46,10 @@ new Vue({
       xhr.open('GET', `${apiURL}&${mkRequestParams(self.currentPage)}`);
       xhr.onload = function () {
         let response = JSON.parse(xhr.response);
-        self.hasAvailablePages = true;
 
+        self.hasAvailablePages = true;
         self.repos = Array.isArray(response.items) ? response.items : self.repos;
         self.loading = false;
-
         self.itemsLength = self.itemsLength || self.repos.length;
 
         if (response.message) {
@@ -58,8 +57,6 @@ new Vue({
         } else {
           self.errorMessage = null;
         }
-
-        console.log('response', xhr, response);
       };
       xhr.send()
     }
