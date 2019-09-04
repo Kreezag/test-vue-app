@@ -27,9 +27,7 @@
                     :disabled="loading"
                     v-bind:class="{ 'pagination-button--active': currentPage === 1}"
                 >1</button>
-
-                <span v-if="currentPage >= 4">...</span>
-
+                <span v-if="currentPage > 4">...</span>
                 <button
                     class="pagination-button"
                     v-bind:class="{ 'pagination-button--active': n === currentPage }"
@@ -38,9 +36,7 @@
                     @click="currentPage = n"
                     :disabled="loading"
                 >{{ n }}</button>
-
                 <span v-if="currentPage <= (availablePages - 4)">...</span>
-
                 <button
                     class="pagination-button"
                     @click="currentPage = availablePages"
