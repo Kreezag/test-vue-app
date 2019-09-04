@@ -17,6 +17,7 @@ new Vue({
     itemsLength: null,
     loading: true,
     hasAvailablePages: false,
+    errorMessage: null
   },
 
   created: function () {
@@ -25,8 +26,7 @@ new Vue({
 
   computed: {
     availablePages: function () {
-      console.log('this', this);
-      return this.itemsLength ? Math.ceil(MAX_AVAILABLE_ITEM_COUNT/this.itemsLength) : 1;
+      return this.itemsLength ? Math.ceil(MAX_AVAILABLE_ITEM_COUNT/this.itemsLength) : null;
     }
   },
 
@@ -48,10 +48,16 @@ new Vue({
         let response = JSON.parse(xhr.response);
         self.hasAvailablePages = true;
 
-        self.repos = response.items;
+        self.repos = Array.isArray(response.items) ? response.items : self.repos;
         self.loading = false;
 
         self.itemsLength = self.itemsLength || self.repos.length;
+
+        if (response.message) {
+          self.errorMessage = response.message;
+        } else {
+          self.errorMessage = null;
+        }
 
         console.log('response', xhr, response);
       };
