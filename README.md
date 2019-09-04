@@ -1,2 +1,2 @@
 # test-vue-app
-test-vue-app
+My first vue application

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+<div>
+    <div id="demo" class="template">
+        <h1 class="template-head">List of github js repositories</h1>
+
+        <div v-if="!hasAvailablePages" class="pagination pagination--loading">Loading...</div>
+
+        <div v-if="hasAvailablePages" class="pagination">
+            <span class="pagination-count">page {{ currentPage }}</span>
+
+            <div class="pagination-button-list">
+                <button
+                    class="pagination-button"
+                    @click="currentPage -= 1"
+                    :disabled="(currentPage <= 1) || loading"
+                >←</button>
+                <button
+                    class="pagination-button"
+                    @click="currentPage = 1"
+                    :disabled="loading"
+                    v-bind:class="{ 'pagination-button--active': currentPage === 1}"
+                >1</button>
+                <span v-if="currentPage > 4">...</span>
+                <button
+                    class="pagination-button"
+                    v-bind:class="{ 'pagination-button--active': n === currentPage }"
+                    v-for="n in availablePages"
+                    v-if=" (n !== availablePages) && (n !== 1) && ((currentPage >= n - 2) && (currentPage <= n + 2))"
+                    @click="currentPage = n"
+                    :disabled="loading"
+                >{{ n }}</button>
+                <span v-if="currentPage <= (availablePages - 4)">...</span>
+                <button
+                    class="pagination-button"
+                    @click="currentPage = availablePages"
+                    :disabled="loading"
+                    v-if="availablePages"
+                    v-bind:class="{ 'pagination-button--active': currentPage === availablePages}"
+                >{{ availablePages }}</button>
+
+                <button
+                    class="pagination-button"
+                    @click="currentPage += 1"
+                    :disabled="(currentPage >= availablePages) || loading"
+                >→</button>
+            </div>
+        </div>
+
+        <div v-if="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <div v-if="!errorMessage">
+            <ul class="repo_list">
+                <li class="repo_item repo_item-header">
+                    <span class="repo_item_col">🍪 Name</span>
+
+                    <span class="repo_item_col">🔗 Link</span>
+
+                    <span class="repo_item_col">⭐ Stars</span>
+
+                    <span class="repo_item_col">👀 Watchers</span>
+
+                    <span class="repo_item_col">😀 Owner</span>
+
+                    <span class="repo_item_col">🍴 Forks</span>
+
+                    <span class="repo_item_col">💬 Open issues</span>
+                </li>
+
+                <div v-if="loading" class="repo_loading">Loading...</div>
+
+                <li v-if="!loading" v-for="repo in repos" class="repo_item">
+
+                    <span class="repo_item_col">{{ repo.name }}</span>
+
+                    <span class="repo_item_col"><a :href="repo.html_url" :title="repo.html_url" target="_blank" class="commit">{{ repo.html_url }}</a></span>
+
+                    <span class="repo_item_col">{{ repo.stargazers_count }}</span>
+
+                    <span class="repo_item_col">{{ repo.watchers }}</span>
+
+                    <span class="repo_item_col">
+                        <a :href="repo.owner.html_url" target="_blank" class="commit">
+                            <img class="repo_item_img" v-if="repo.owner" :src="repo.owner.avatar_url" alt="owner">
+                            {{repo.owner.login}}
+                        </a>
+                    </span>
+
+                    <span class="repo_item_col">{{ repo.forks }}</span>
+
+                    <span class="repo_item_col">{{ repo.open_issues_count }}</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="index.js"></script>
+</html>

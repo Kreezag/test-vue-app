@@ -1,0 +1,23 @@
+{
+  "name": "test-vue-app",
+  "version": "1.0.0",
+  "description": "my first vue app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kreezag/test-vue-app.git"
+  },
+  "keywords": [
+    "js",
+    "vue"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kreezag/test-vue-app/issues"
+  },
+  "homepage": "https://github.com/Kreezag/test-vue-app#readme"
+}
