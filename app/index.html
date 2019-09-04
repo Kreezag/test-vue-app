@@ -11,7 +11,11 @@
         <h1 class="template-head">List of github js repositories</h1>
 
         <div class="paginator-wrapper">
-            <div class="paginator">{{ availablePages }}</div>
+            <div class="paginator">
+                <span class="paginator-count">page {{ pages }}</span>
+                <button class="paginator-button" @click="pages -= 1" :disabled="(pages <= 1) || loading">← Previous </button>
+                <button class="paginator-button" @click="pages += 1" :disabled="(pages >= availablePages) || loading">Next →</button>
+            </div>
         </div>
 
         <ol class="repo_list">
@@ -31,9 +35,9 @@
                 <span class="repo_item_col">💬 Open issues</span>
             </li>
 
-            <div v-if="!isLoaded" class="repo_loading">Loading...</div>
+            <div v-if="loading" class="repo_loading">Loading...</div>
 
-            <li v-if="isLoaded" v-for="repo in repos" class="repo_item">
+            <li v-if="!loading" v-for="repo in repos" class="repo_item">
 
                 <span class="repo_item_col">{{ repo.name }}</span>
 
